@@ -11,6 +11,7 @@ usage() {
 while getopts ":s:p:" opt; do
 	case "$opt" in
 		s)
+			[ $OPTARG == "nyaa" ] || [ $OPTARG == "snyaa" ] || (echo -e "$OPTARG is not support right now" && usage)
 			site=$OPTARG
 			;;
 		p)
@@ -27,6 +28,6 @@ if [ -z "$site" ] || [ -z "$para" ]; then
     usage
 fi
 
-if [ "$site" == "nyaa" ]; then
-	SearcherNyaa "$para"
+if [ "$site" == "nyaa" ] || [ "$site" == "snyaa" ]; then
+	SearcherNyaa "$para" "$site"
 fi
